@@ -7,7 +7,7 @@ public:
             int c=0;
             for(int x :mat[i])
                 if(x==1)
-                    c++;
+                    c+=x;
             if(c>cnt)
             {
                 cnt=c;
