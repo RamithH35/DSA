@@ -1,32 +1,17 @@
 class Solution {
 public:
-    bool search1(vector<int>matrix,int target)
-    {
-        int l=0,h=matrix.size()-1;
-        while(l<=h)
-        {
-            int m=(l)+(h-l)/2;
-            if(matrix[m]==target)
-                return true;
-            else if(matrix[m]>target)
-                h=m-1;
-            else
-                l=m+1;
-        }
-        return false;
-    }
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int low=0,high=matrix.size()-1;
-        int n=matrix[0].size();
+        int n=matrix.size(),m=matrix[0].size();
+        int low=0,high=n*m-1;
         while(low<=high)
         {
             int mid=(low)+(high-low)/2;
-            if(target<matrix[mid][0])
-                high=mid-1;
-            else if(target>matrix[mid][n-1])
-                low=mid+1;
-            else
-                return search1(matrix[mid],target);
+            int row=mid/m;
+            int col=mid%m;
+            int el=matrix[row][col];
+            if(el == target) return true;
+            else if(el<target) low=mid+1;
+            else high=mid-1;
         }
         return false;
     }
