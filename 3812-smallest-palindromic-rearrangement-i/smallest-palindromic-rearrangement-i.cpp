@@ -6,23 +6,12 @@ public:
        for(char c : s)
             cmap[c-'a']++;
         string left="";
-        for(int i=0;i<cmap.size();i++)
-        {
-            if(cmap[i]>=2)
-            {
-                int pairs=cmap[i]/2;
-                left.append(pairs,i+'a');
-                cmap[i]%=2;
-            }
-        }
         string mid="";
         for(int i=0;i<cmap.size();i++)
         {
-            if(cmap[i]==1)
-            {
-                mid.push_back(i+'a');
-                break;
-            }
+            left +=string(cmap[i]/2,(char)('a'+i));
+            if(cmap[i]%2==1)
+                mid=(char)('a'+i);
         }
         string right=left;
         reverse(right.begin(),right.end());
