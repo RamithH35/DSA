@@ -21,9 +21,8 @@ public:
         while(temp)
         {
             Node *newnode = new Node(temp->val);
-            Node *next= temp->next;
+            newnode->next=temp->next;
             temp->next=newnode;
-            newnode->next=next;
             temp=temp->next->next;
         }
         temp=head;
@@ -34,9 +33,10 @@ public:
             else
                 temp->next->random=temp->random->next;
             temp=temp->next->next;
+
         }
         temp=head;
-        Node *dummy = new Node(-1);
+        Node *dummy=new Node(-1);
         Node *res=dummy;
         while(temp)
         {
@@ -46,7 +46,5 @@ public:
             temp=temp->next;
         }
         return dummy->next;
-
-
     }
 };
