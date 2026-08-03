@@ -12,12 +12,12 @@ public:
             int cnt=0;
             while(n >= (d<<(cnt+1)))
                 cnt++;
-            ans+=(1<<cnt);
+            ans+=(1L<<cnt);
             n=n-(d<<cnt);
         }
-        if(ans==(1<<31) && sign)
+        if(ans==(1L<<31) && sign)
             return INT_MAX;
-        if(ans==(1<<31) && !sign)
+        if(ans==(1L<<31) && !sign)
             return INT_MIN;
         return sign?ans:-ans;
     }
