@@ -13,10 +13,7 @@ public:
         }
     }
     for(int k=2;k<n;k++)
-    {
-        if(arr[k])
-            cnt++;
-    }
+        cnt+=arr[k];
     return cnt;
     }
 };
