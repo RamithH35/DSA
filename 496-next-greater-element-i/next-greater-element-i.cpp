@@ -2,24 +2,20 @@ class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         unordered_map<int, int> mp;
+        stack<int>st;
         vector<int> res;
-        for (int i = 0; i < nums2.size(); i++) {
-            mp[nums2[i]] = i;
+        for (int i = nums2.size()-1;i >= 0; i--) {
+            while(!st.empty()&&st.top()<nums2[i])
+                st.pop();
+            if(st.empty())
+                mp[nums2[i]]=-1;
+            else
+                mp[nums2[i]]=st.top();
+            st.push(nums2[i]);
         }
-
-        for (auto x : nums1) {
-            int ind = mp[x];
-            int ele = -1;
-            for (int i = ind + 1; i < nums2.size(); i++) {
-                if (nums2[i] > x) {
-                    ele = nums2[i];
-                    break;
-                }
-            }
-
-            res.push_back(ele);
-        }
-
+        for(int x:nums1)
+            res.push_back(mp[x]);
         return res;
+
     }
 };
