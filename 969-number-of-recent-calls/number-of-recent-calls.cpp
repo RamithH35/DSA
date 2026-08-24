@@ -1,15 +1,15 @@
 class RecentCounter {
 public:
-    deque<int>dq;
+    queue<int>q;
     RecentCounter() {
         
     }
     
     int ping(int t) {
-        dq.push_back(t);
-        while(!dq.empty()&&dq.front()<t-3000)
-            dq.pop_front();
-        return dq.size();
+        q.push(t);
+        while(!q.empty()&&q.front()<t-3000)
+            q.pop();
+        return q.size();
     }
 };
 
