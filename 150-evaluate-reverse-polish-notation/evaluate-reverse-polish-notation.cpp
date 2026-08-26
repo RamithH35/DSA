@@ -1,41 +1,28 @@
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
-        stack<string>st;
-        for(int i=0;i<tokens.size();i++)
-        {
-            string s=tokens[i];
-            if(s=="+")
-            {
-                int b=stoi(st.top());st.pop();
-                int a=stoi(st.top());st.pop();
-                int res=a+b;
-                st.push(to_string(res));
+        stack<int>st;
+        for(int i=0; i<tokens.size(); i++){
+            string c = tokens[i];
+            
+            if(c == "+" || c == "-" || c == "*" || c == "/"){
+                int first = st.top();
+                st.pop();
+                int second = st.top();
+                st.pop();
+
+                int ans = 0;
+
+                if(c == "+") ans = first + second;
+                else if(c == "-") ans = second - first;
+                else if(c == "*") ans = first * second;
+                else ans = second/first;
+
+                st.push(ans);
+
             }
-            else if(s=="-")
-            {
-                int b=stoi(st.top());st.pop();
-                int a=stoi(st.top());st.pop();
-                int res=a-b;
-                st.push(to_string(res));
-            }
-            else if(s=="*")
-            {
-                int b=stoi(st.top());st.pop();
-                int a=stoi(st.top());st.pop();
-                int res=a*b;
-                st.push(to_string(res));
-            }
-            else if(s=="/")
-            {
-                int b=stoi(st.top());st.pop();
-                int a=stoi(st.top());st.pop();
-                int res=a/b;
-                st.push(to_string(res));
-            }
-            else
-                st.push(s);
+            else st.push(stoi(c));
         }
-        return stoi(st.top());
+        return st.top();
     }
 };
