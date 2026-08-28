@@ -30,8 +30,6 @@ public:
             else
             {
                 prev=cur;
-                if(cur==nullptr)
-                    break;
                 cur=cur->next;
             }
             
