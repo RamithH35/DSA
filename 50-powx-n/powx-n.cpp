@@ -1,24 +1,19 @@
 class Solution {
 public:
-    double myPow(double x, int n) {
-    long long exp=abs((long long)n);
-    double ans=1.0;
-    bool negative=n<0;
-    while(exp)
+    double Power(double x,long long n)
     {
-        if(exp%2)
-        {
-            ans=ans*x;
-            exp=exp-1;
-        }
-        else
-        {
-            x=x*x;
-            exp/=2;
-        }
+        if(n==0)
+            return 1.0;
+        else if(n==1)
+            return x;
+        if(n%2==0)
+            return Power(x*x,n/2);
+        return x*Power(x,n-1);
     }
-    if(negative)
-        ans= (double)1.0/(double)ans;
-    return ans;
-    }   
+    double myPow(double x, int n) {
+        long long num=n;
+        if(num<0)
+            return (double)1.0/Power(x,-1*num);
+        return Power(x,n);
+    }
 };
