@@ -1,30 +1,31 @@
 class Solution {
 public:
-    void generate(string r, int n, vector<string>& res)
-    {
-        if(r.size() == n)
-        {
-            res.push_back(r);
-            return;
-        }
-
-        if(r.back() == '1')
-        {
-            generate(r + "1", n, res);
-            generate(r + "0", n, res);
-        }
-        else
-        {
-            generate(r + "1", n, res);
-        }
-    }
-
     vector<string> validStrings(int n)
     {
-        vector<string> res;
+        vector<string> res = {"1", "0"};
 
-        generate("1", n, res);
-        generate("0", n, res);
+        if(n == 1)
+            return res;
+
+        for(int i = 2; i <= n; i++)
+        {
+            vector<string> temp;
+
+            for(int j = 0; j < res.size(); j++)
+            {
+                if(res[j].back() == '1')
+                {
+                    temp.push_back(res[j] + "1");
+                    temp.push_back(res[j] + "0");
+                }
+                else
+                {
+                    temp.push_back(res[j] + "1");
+                }
+            }
+
+            res = temp;
+        }
 
         return res;
     }
