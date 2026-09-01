@@ -1,19 +1,22 @@
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        int n=nums.size();
-        int subset=(1<<n);
-        vector<vector<int>>ans;
-        for(int num=0;num<subset;num++)
+    void generate(int i,vector<int>&ds,vector<vector<int>>&res,vector<int>&nums)
+    {
+        if(i==nums.size())
         {
-            vector<int>temp;
-            for(int i=0;i<n;i++)
-            {
-                if(num&(1<<i))
-                    temp.push_back(nums[i]);
-            }
-            ans.push_back(temp);
+            res.push_back(ds);
+            return;
         }
-        return ans;
+        ds.push_back(nums[i]);
+        generate(i+1,ds,res,nums);
+        ds.pop_back();
+        generate(i+1,ds,res,nums);
+        
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>res;
+        vector<int>ds;
+        generate(0,ds,res,nums);
+        return res;
     }
 };
