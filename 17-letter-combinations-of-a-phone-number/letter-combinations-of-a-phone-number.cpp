@@ -1,8 +1,7 @@
 class Solution {
 public:
-    void generate(string& s, int ind, string& digits, vector<string>& fn,
-                  vector<string>& res) {
-
+    void generate(string& s,int ind,string& digits,vector<string>& fn,vector<string>& res) 
+    {
         if (ind == digits.size()) {
             res.push_back(s);
             return;
@@ -23,14 +22,10 @@ public:
         if (digits.empty())
             return {};
 
-        vector<string> fn = {"",    "",    "abc",  "def", "ghi",
-                             "jkl", "mno", "pqrs", "tuv", "wxyz"};
-
+        vector<string> fn = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
         vector<string> res;
         string s;
-
         generate(s, 0, digits, fn, res);
-
         return res;
     }
 };
