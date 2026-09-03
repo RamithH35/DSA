@@ -1,53 +1,27 @@
 class Solution {
 public:
     bool uniformArray(vector<int>& nums1) {
+        int e=0;
+        int o=0;
+        int n=nums1.size();
         int minodd=INT_MAX;
-        int mindex=-1;
-        int secondmin=INT_MAX;
-        for(int i=0;i<nums1.size();i++)
+        for(auto &x:nums1)
         {
-            int x=nums1[i];
-            if(x%2)
+            if(x%2==0)
+                e++;
+            else
             {
-                if(x<minodd)
-                {
-                    secondmin=min(secondmin,minodd);
-                    minodd=x;
-                    mindex=i;
-
-                }
-                else
-                    secondmin=min(x,secondmin);
+                o++;
+                minodd=min(x,minodd);
             }
         }
-        bool flagodd=true;
-        bool flageven=true;
-        for(int j=0;j<nums1.size();j++)
+        if(e==n || o==n)
+            return true;
+        for(auto &y:nums1)
         {
-            if(nums1[j]%2)
-                continue;
-            if(j!=mindex && nums1[j]-minodd >=1)
-                continue;
-            else if(nums1[j]-secondmin >=1)
-                continue;
-            flagodd=false;
-            break;
-                        
+            if(y%2==0 && y<minodd)
+                return false;
         }
-        for(int j=0;j<nums1.size();j++)
-        {
-            if(nums1[j]%2==0)
-                continue;
-            if(j!=mindex && nums1[j]-minodd >=1)
-                continue;
-            else if(nums1[j]-secondmin >=1)
-                continue;
-            flageven=false;
-            break;
-                        
-        }
-        return (flagodd || flageven);
-
-        
+        return true;
     }
 };
