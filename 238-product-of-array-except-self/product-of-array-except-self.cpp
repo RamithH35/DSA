@@ -11,11 +11,6 @@ public:
         }
         for(int i=0;i<n;i++)
         {
-            if(i==0)
-            {
-                prev=nums[0];
-                continue;
-            }
             int x = res[i];
             res[i]=x*prev;
             prev=prev*nums[i];
