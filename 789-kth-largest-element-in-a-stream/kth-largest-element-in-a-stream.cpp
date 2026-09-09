@@ -7,8 +7,7 @@ public:
         for(int x:nums)
         {
             q.push(x);
-            if(q.size()>k)
-                q.pop();
+            if(q.size()>k) q.pop();
         }
     }
     
