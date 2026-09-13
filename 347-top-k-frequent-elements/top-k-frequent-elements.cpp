@@ -16,9 +16,15 @@ public:
         priority_queue<pair<int,int>,vector<pair<int,int>>,cmp>pq;
         for(auto &y:mp)
         {
+            if(pq.size()<k)
+            {
+                pq.push(y);
+                continue;
+            }
+            if(pq.top().second>y.second)
+                continue;
+            pq.pop();
             pq.push(y);
-            if(pq.size()>k)
-                pq.pop();
         }
         while(pq.size())
         {
