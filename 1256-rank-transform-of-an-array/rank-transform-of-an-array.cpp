@@ -3,30 +3,24 @@ public:
     vector<int> arrayRankTransform(vector<int>& arr) {
         if(arr.empty())
             return arr;
-        priority_queue<int,vector<int>,greater<int>>pq;
-        int prev=0;
-        for(auto x:arr)
-            pq.push(x);
+        vector<int>c=arr;
         unordered_map<int,int>mp;
-        prev=pq.top();
+        sort(c.begin(),c.end());
         int rank=1;
-        mp[prev]=1;
-        while(!pq.empty())
+        mp[c[0]]=1;
+        for(int i=1;i<c.size();i++)
         {
-            int x=pq.top();
-            pq.pop();
-            if(x!=prev)
+            if(c[i]!=c[i-1])
             {
                 rank++;
-                mp[x]=rank;
+                mp[c[i]]=rank;
             }
-            prev=x;
         }
-        for(auto &x:arr)
+        for(int i=0;i<arr.size();i++)
         {
-            x=mp[x];
+            int x=mp[arr[i]];
+            c[i]=x;
         }
-        return arr;
-
+        return c;
     }
 };
