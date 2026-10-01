@@ -8,16 +8,17 @@ public:
                 st.push(c);
             else
             {
-                if(st.empty())
+                if(st.empty()) return 0;
+                if(c==')'&& st.top()=='(')
+                    st.pop();
+                else if (c=='}' && st.top()=='{')
+                    st.pop();
+                else if(c==']'&& st.top()=='[')
+                    st.pop();
+                else
                     return 0;
-                if(c==')' && st.top()!='(')
-                    return 0;
-                if(c=='}' && st.top()!='{')
-                    return 0;
-                if(c==']' && st.top()!='[')
-                    return 0;
-                st.pop();
             }
+
         }
         return st.empty();
     }
