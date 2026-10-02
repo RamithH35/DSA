@@ -8,12 +8,9 @@ public:
             return;
         }
         if(open<n)
-        {
             generate(r+"(",open+1,close,n,res);
-        }
         if(close<open)
             generate(r+")",open,close+1,n,res);
-
     }
     vector<string> generateParenthesis(int n) {
         vector<string>res;
