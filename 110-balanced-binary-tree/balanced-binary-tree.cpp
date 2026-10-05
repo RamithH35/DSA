@@ -16,9 +16,9 @@ public:
         if(root==nullptr)
             return 0;
         int left=helper(root->left);
+        int right=helper(root->right);
         if(left==-1)
             return -1;
-        int right=helper(root->right);
         if(right==-1)
             return -1;
         if(abs(left-right)>1)
