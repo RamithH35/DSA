@@ -11,17 +11,23 @@
  */
 class Solution {
 public:
-    TreeNode* builder(vector<int>&A,int &i,int bound)
-    {
-        if(i>=A.size()||A[i]>bound)
-            return nullptr;
-        TreeNode* root=new TreeNode(A[i++]);
-        root->left=builder(A,i,root->val);
-        root->right=builder(A,i,bound);
-        return root;
-    }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        int i=0;
-        return builder(preorder,i,INT_MAX);
+        int ind = 0;
+        return makeBST(preorder, INT_MAX, ind);
     }
+
+    TreeNode* makeBST(vector<int> &preorder, int upbound, int &ind){
+        if(ind>=preorder.size() || 
+            preorder[ind]>upbound) return nullptr;
+
+        TreeNode* root = new TreeNode(preorder[ind++]);
+
+        root->left=  makeBST(preorder, root->val, ind);
+
+        root->right = makeBST(preorder, upbound, ind);
+
+        return root;
+
+    }
+
 };
